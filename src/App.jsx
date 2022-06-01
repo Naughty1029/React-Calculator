@@ -1,47 +1,61 @@
-import './App.css';
 import { useEffect, useState } from 'react';
 import Data from './formulas.json';
 import * as Calculators from './business/Calculators';
 
 function App() {
-  const [formulas,setFormulas] = useState([]);
-  const [item,setItem] = useState([]);
+  const formulas = Data;
+  const [item,setItem] = useState(formulas[0]);
+  const [inputTextArray,setInputTextArray] = useState([]);
   const [result,setResult] = useState(0);
 
   useEffect(()=>{
-    setFormulas(Data);
-    setItem(Data[0]);
-  },[formulas,item])
+    createInitialItemArray();
+  },[])
 
-  // const onChangeValue = (e)=>{
-  //   setItem01(e.target.value)
-  // }
+  const createInitialItemArray = ()=>{
+    const length = item["item"].length;
+    const Array = [];
+    for (let i = 0; i < length; i++) {
+      Array.push(0);
+    }
+    setInputTextArray(Array);
+  }
 
-  const handleCalculate = (item01,item02)=>{
-    const func = Calculators[formulas[0]['calc']];
-    const result = func(item01,item02);//ここはスプレッド構文とかで受け取れないか？
+  const handleChangeItem = (index)=>{
+    setItem(formulas[index]);
+    createInitialItemArray();
+  }
+
+  const handleInputText = (e)=>{
+    const textIndex = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+    const inputText = e.target.value;
+    setInputTextArray(
+      inputTextArray.map((text,index) => index === textIndex ? inputText : text)
+    );
+  }
+
+  const handleCalculate = (calc)=>{
+    const func = Calculators[calc];
+    // const result = func();//ここはスプレッド構文とかで受け取れないか？
     setResult(result);
   }
 
   return (
     <>
-    {formulas.map((formula)=>(
-      <button key={formula['id']}>{formula['title']}</button>
-    ))}
-    <br /><br />
-        <div>{item["title"]}</div>
-        <div>
-          {item["item"]?.map((item,index)=>(
-            <div key={index}>
-              {item}
-              <br />
-              <input type="text" />
-              <br />
-            </div>
-          ))}
-          <button onClick={()=>handleCalculate()}>計算</button>
-          <p>{result}</p>
-        </div>
+      {formulas.map((formula,index)=>(
+        <button key={formula['id']} onClick={()=>handleChangeItem(index)}>{formula['title']}</button>
+      ))}
+      <br />
+      <div>{item["title"]}</div>
+      <div>
+        {item["item"]?.map((item,index)=>(
+          <div key={index}>
+            {item}<input type="text" onChange={handleInputText} data-index={index} value={inputTextArray[index]?inputTextArray[index]:0} /><br />
+          </div>
+        ))}
+        <button onClick={()=>handleCalculate(item["calc"])}>計算</button>
+        <p>{result}</p>
+      </div>
     </>
   );
 }
