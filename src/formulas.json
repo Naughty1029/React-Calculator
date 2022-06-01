@@ -1,15 +1,15 @@
 [
     {
       "id": 1,
-      "title": "構成比",
-      "item":["一部","全部"],
+      "title": "掛け算",
+      "item":["数値１","数値２"],
       "calc":"kouseihi",
       "rate": true
     },
     {
       "id": 2,
-      "title": "前年比",
-      "item":["今年度売上","前年度売上"],
+      "title": "割り算",
+      "item":["数値１","数値２"],
       "calc":"zennenhi",
       "rate": true
     }

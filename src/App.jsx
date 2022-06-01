@@ -12,6 +12,7 @@ function App() {
     createInitialItemArray();
   },[])
 
+  //テキストフィールドの初期値を設定する関数
   const createInitialItemArray = ()=>{
     const length = item["item"].length;
     const Array = [];
@@ -19,6 +20,7 @@ function App() {
       Array.push(0);
     }
     setInputTextArray(Array);
+    setResult(0);
   }
 
   const handleChangeItem = (index)=>{
@@ -36,8 +38,10 @@ function App() {
 
   const handleCalculate = (calc)=>{
     const func = Calculators[calc];
-    // const result = func();//ここはスプレッド構文とかで受け取れないか？
-    setResult(result);
+    const result = func(...inputTextArray);
+    if(result){
+      setResult(result);
+    }
   }
 
   return (
@@ -50,7 +54,13 @@ function App() {
       <div>
         {item["item"]?.map((item,index)=>(
           <div key={index}>
-            {item}<input type="text" onChange={handleInputText} data-index={index} value={inputTextArray[index]?inputTextArray[index]:0} /><br />
+            {item}
+            <input 
+            type="text" 
+            onChange={handleInputText} 
+            data-index={index} 
+            value={inputTextArray[index]?inputTextArray[index]:''} />
+            <br />
           </div>
         ))}
         <button onClick={()=>handleCalculate(item["calc"])}>計算</button>
