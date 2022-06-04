@@ -1,5 +1,5 @@
 //計算式を定義するためのファイル
-export const Functions = {
+export const CalcFunctions = {
   kouseihi: (...nums: number[]): number => {
     const calc = nums[0] / nums[1];
     return calc;

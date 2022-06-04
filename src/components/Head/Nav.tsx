@@ -3,7 +3,7 @@ import { VFC } from 'react';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { HeadType } from '../../../types/pages/Head/HeadType';
+import { HeadType } from '../../types/Head/HeadType';
 
 export const Nav: VFC<Omit<HeadType, 'handleOpenNavMenu'>> = (props) => {
   const { anchorElNav, pages, handleCloseNavMenu } = props;

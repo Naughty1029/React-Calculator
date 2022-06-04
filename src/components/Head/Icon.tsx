@@ -2,7 +2,7 @@
 import { VFC } from 'react';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { HeadType } from '../../../types/pages/Head/HeadType';
+import { HeadType } from '../../types/Head/HeadType';
 
 export const Icon: VFC<Pick<HeadType, 'handleOpenNavMenu'>> = (props) => {
   const { handleOpenNavMenu } = props;

@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
-import Data from './formulas.json';
-import { Head } from './components/pages/Head';
-import { Functions } from './utils/Calculators';
-
-type Formulas = {
-  id: number;
-  title: string;
-  item: Array<string>;
-  calc: string;
-  rate: boolean;
-};
+import { Head } from './components/Head';
+import { useFormulasItem } from './hooks/useFormulasItem';
+import { CalcFunctions } from './utils/CalcFunctions';
 
 type FunctionsType = {
   kouseihi: () => number;
@@ -17,9 +9,8 @@ type FunctionsType = {
 };
 
 function App() {
-  const formulas = Data;
-  const [item, setItem] = useState<Formulas>(formulas[0]);
-  const [inputNumberArray, setNumberArray] = useState<Array<number>>([]);
+  const { formulas, handleChangeItem, item } = useFormulasItem();
+  const [inputNumberArray, setInputNumberArray] = useState<Array<number>>([]);
   const [result, setResult] = useState<number>(0);
 
   useEffect(() => {
@@ -34,26 +25,21 @@ function App() {
     for (let i = 0; i < length; i++) {
       resetArray.push(0);
     }
-    setNumberArray(resetArray); //InputTextArrayをリセット
+    setInputNumberArray(resetArray); //InputTextArrayをリセット
     setResult(0); //計算結果をリセット
-  };
-
-  const handleChangeItem = (index: number): void => {
-    setItem(formulas[index]);
-    createInitialItemArray();
   };
 
   const handleInputNumber = (e: React.ChangeEvent<HTMLInputElement>): void => {
     let inputIndex = Number(e.currentTarget.getAttribute('data-index'));
     const inputNumber = Number(e.target.value);
-    setNumberArray(
+    setInputNumberArray(
       inputNumberArray.map((number, index) => (index === inputIndex ? inputNumber : number))
     );
   };
 
   const handleCalculate = (calc: string): void => {
     const typeCalc: keyof FunctionsType = calc as keyof FunctionsType;
-    const func = Functions[typeCalc];
+    const func = CalcFunctions[typeCalc];
     const result = func(...inputNumberArray);
     if (result) {
       setResult(result);
