@@ -4,9 +4,12 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { HeadType } from '../../types/Head/HeadType';
+import Data from '../../formulas.json';
 
 export const Nav: VFC<Omit<HeadType, 'handleOpenNavMenu'>> = (props) => {
-  const { anchorElNav, pages, handleCloseNavMenu } = props;
+  const formulas = Data;
+  const { anchorElNav, handleCloseNavMenu, handleChangeItem } = props;
+
   return (
     <Menu
       id="menu-appbar"
@@ -23,9 +26,11 @@ export const Nav: VFC<Omit<HeadType, 'handleOpenNavMenu'>> = (props) => {
       open={Boolean(anchorElNav)}
       onClose={handleCloseNavMenu}
     >
-      {pages.map((page) => (
-        <MenuItem key={page} onClick={handleCloseNavMenu}>
-          <Typography textAlign="center">{page}</Typography>
+      {formulas.map((formula, index) => (
+        <MenuItem key={formula['id']} onClick={handleCloseNavMenu}>
+          <Typography textAlign="center" onClick={() => handleChangeItem(index)}>
+            {formula['title']}
+          </Typography>
         </MenuItem>
       ))}
     </Menu>

@@ -31,12 +31,12 @@ const App: VFC = () => {
 
   return (
     <>
-      <Head />
-      {formulas.map((formula, index) => (
+      <Head handleChangeItem={handleChangeItem} />
+      {/* {formulas.map((formula, index) => (
         <button key={formula['id']} onClick={() => handleChangeItem(index)}>
           {formula['title']}
         </button>
-      ))}
+      ))} */}
       <div>{item['title']}</div>
       <div>
         {item['item']?.map((item, index) => (
