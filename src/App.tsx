@@ -1,49 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, VFC } from 'react';
+import Data from './formulas.json';
 import { Head } from './components/Head';
-import { useFormulasItem } from './hooks/useFormulasItem';
-import { CalcFunctions } from './utils/CalcFunctions';
+import { useInputNumberArray, useResult } from './hooks';
 
-type FunctionsType = {
-  kouseihi: () => number;
-  zennenhi: () => number;
+type Formulas = {
+  id: number;
+  title: string;
+  item: Array<string>;
+  calc: string;
+  rate: boolean;
 };
 
-function App() {
-  const { formulas, handleChangeItem, item } = useFormulasItem();
-  const [inputNumberArray, setInputNumberArray] = useState<Array<number>>([]);
-  const [result, setResult] = useState<number>(0);
+const App: VFC = () => {
+  const formulas = Data;
+  const [item, setItem] = useState<Formulas>(formulas[0]);
+  const { inputNumberArray, createInitialItemArray, handleInputNumber } = useInputNumberArray();
+  const { result, setResult, handleCalculate } = useResult();
 
   useEffect(() => {
-    createInitialItemArray();
+    createInitialItemArray(item);
     // eslint-disable-next-line
   }, []);
 
-  //フィールドの初期値を設定する関数
-  const createInitialItemArray = () => {
-    const length = item['item'].length;
-    const resetArray = [];
-    for (let i = 0; i < length; i++) {
-      resetArray.push(0);
-    }
-    setInputNumberArray(resetArray); //InputTextArrayをリセット
-    setResult(0); //計算結果をリセット
-  };
-
-  const handleInputNumber = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    let inputIndex = Number(e.currentTarget.getAttribute('data-index'));
-    const inputNumber = Number(e.target.value);
-    setInputNumberArray(
-      inputNumberArray.map((number, index) => (index === inputIndex ? inputNumber : number))
-    );
-  };
-
-  const handleCalculate = (calc: string): void => {
-    const typeCalc: keyof FunctionsType = calc as keyof FunctionsType;
-    const func = CalcFunctions[typeCalc];
-    const result = func(...inputNumberArray);
-    if (result) {
-      setResult(result);
-    }
+  //選択された計算式の個別データを取得するための関数
+  const handleChangeItem = (index: number): void => {
+    setItem(formulas[index]);
+    createInitialItemArray(item);
+    setResult(0);
   };
 
   return (
@@ -54,26 +37,25 @@ function App() {
           {formula['title']}
         </button>
       ))}
-      <br />
       <div>{item['title']}</div>
       <div>
         {item['item']?.map((item, index) => (
           <div key={index}>
             {item}
             <input
-              type="number"
+              type="text"
               onChange={handleInputNumber}
               data-index={index}
-              value={inputNumberArray[index] ? inputNumberArray[index] : 0}
+              value={inputNumberArray[index] ? inputNumberArray[index]! : 0}
             />
             <br />
           </div>
         ))}
-        <button onClick={() => handleCalculate(item['calc'])}>計算</button>
+        <button onClick={() => handleCalculate(item['calc'], inputNumberArray)}>計算</button>
         <p>{result}</p>
       </div>
     </>
   );
-}
+};
 
 export default App;
