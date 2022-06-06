@@ -5,8 +5,8 @@ import styled from '@emotion/styled';
 type Props = {
   item: string;
   index: number;
-  inputNumberArray: Array<number>;
-  setInputNumberArray: React.Dispatch<React.SetStateAction<number[]>>;
+  inputNumberArray: Array<number | null>;
+  setInputNumberArray: React.Dispatch<React.SetStateAction<Array<number | null>>>;
 };
 
 export const InputForm: VFC<Props> = memo(
@@ -26,7 +26,7 @@ export const InputForm: VFC<Props> = memo(
           type="text"
           onChange={handleInputNumber}
           data-index={index}
-          value={inputNumberArray[index] ? inputNumberArray[index]! : 0}
+          value={inputNumberArray[index] ? inputNumberArray[index]! : ''}
         />
       </SContainer>
     );

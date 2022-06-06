@@ -1,6 +1,7 @@
 //計算結果を表示するコンポーネント
 import { VFC } from 'react';
 import { Button, Typography } from '@mui/material';
+import { CalcFunctions } from '../../utils/CalcFunctions';
 
 type Formulas = {
   id: number;
@@ -12,12 +13,34 @@ type Formulas = {
 
 type Props = {
   item: Formulas;
-  inputNumberArray: Array<number>;
+  inputNumberArray: Array<number | null>;
   result: number;
-  handleCalculate: (calc: string, inputNumberArray: any) => void;
+  setResult: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const Result: VFC<Props> = ({ item, inputNumberArray, handleCalculate, result }) => {
+type FunctionsType = {
+  kouseihi: () => number;
+  zennenhi: () => number;
+  tasseiritsu: () => number;
+  nobiritsu: () => number;
+  jukouritsu: () => number;
+  teika01: () => number;
+  teika02: () => number;
+  genka01: () => number;
+  genka02: () => number;
+  riekiritsu: () => number;
+  genkaritsu: () => number;
+  repeat: () => number;
+};
+
+export const Result: VFC<Props> = ({ item, inputNumberArray, result, setResult }) => {
+  const handleCalculate = (calc: string, inputNumberArray: any): void => {
+    const typeCalc: keyof FunctionsType = calc as keyof FunctionsType;
+    const func = CalcFunctions[typeCalc];
+    const result = func(...inputNumberArray);
+    if (Number.isNaN(result)) return;
+    setResult(result);
+  };
   return (
     <>
       <Button

@@ -1,7 +1,7 @@
-import { useEffect, useState, VFC } from 'react';
+import { useState, VFC } from 'react';
 import Data from './formulas.json';
 import { Head } from './components/Head';
-import { useInputNumberArray, useResult } from './hooks';
+import { useInputNumberArray } from './hooks';
 import { Form } from './components/Form';
 import { Container } from '@mui/material';
 
@@ -16,18 +16,12 @@ type Formulas = {
 const App: VFC = () => {
   const formulas = Data;
   const [item, setItem] = useState<Formulas>(formulas[0]);
-  const { inputNumberArray, setInputNumberArray, createInitialItemArray } = useInputNumberArray();
-  const { result, setResult, handleCalculate } = useResult();
-
-  useEffect(() => {
-    createInitialItemArray(item);
-    // eslint-disable-next-line
-  }, []);
+  const { inputNumberArray, setInputNumberArray } = useInputNumberArray(item);
+  const [result, setResult] = useState<number>(0);
 
   //選択された計算式の個別データを取得するための関数
   const handleChangeItem = (index: number): void => {
     setItem(formulas[index]);
-    createInitialItemArray(item);
     setResult(0);
   };
 
@@ -38,9 +32,9 @@ const App: VFC = () => {
         <Form
           item={item}
           inputNumberArray={inputNumberArray}
-          result={result}
           setInputNumberArray={setInputNumberArray}
-          handleCalculate={handleCalculate}
+          result={result}
+          setResult={setResult}
         />
       </Container>
     </>

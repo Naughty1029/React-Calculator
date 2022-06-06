@@ -13,19 +13,20 @@ type Formulas = {
 
 type Props = {
   item: Formulas;
-  inputNumberArray: Array<number>;
+  inputNumberArray: Array<number | null>;
   result: number;
-  setInputNumberArray: React.Dispatch<React.SetStateAction<number[]>>;
-  handleCalculate: (calc: string, inputNumberArray: any) => void;
+  setInputNumberArray: React.Dispatch<React.SetStateAction<Array<number | null>>>;
+  setResult: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const Form: VFC<Props> = memo(
-  ({ item, inputNumberArray, result, setInputNumberArray, handleCalculate }) => {
+  ({ item, inputNumberArray, result, setInputNumberArray, setResult }) => {
     return (
       <>
         <Typography variant="h6">{item['title']}</Typography>
         {item['item']?.map((item, index) => (
           <InputForm
+            key={index}
             item={item}
             index={index}
             inputNumberArray={inputNumberArray}
@@ -35,7 +36,7 @@ export const Form: VFC<Props> = memo(
         <Result
           item={item}
           inputNumberArray={inputNumberArray}
-          handleCalculate={handleCalculate}
+          setResult={setResult}
           result={result}
         />
       </>

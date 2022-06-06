@@ -25,7 +25,7 @@ export const CalcFunctions = {
     return calc;
   },
   teika02: (...nums: number[]): number => {
-    const calc = nums[0] + nums[0] * nums[1];
+    const calc = nums[0] + nums[0] * (nums[1] / 100);
     return calc;
   },
   genka01: (...nums: number[]): number => {
@@ -33,7 +33,7 @@ export const CalcFunctions = {
     return calc;
   },
   genka02: (...nums: number[]): number => {
-    const calc = nums[0] * nums[1];
+    const calc = nums[0] * (nums[1] / 100);
     return calc;
   },
   riekiritsu: (...nums: number[]): number => {
