@@ -1,16 +1,86 @@
 [
     {
       "id": 1,
-      "title": "掛け算",
-      "item":["数値１","数値２"],
+      "title": "構成比",
+      "item":["一部","全体"],
       "calc":"kouseihi",
       "rate": true
     },
     {
       "id": 2,
-      "title": "割り算",
-      "item":["数値１","数値２"],
+      "title": "前年比の売上",
+      "item":["今年度売上","前年度売上"],
       "calc":"zennenhi",
+      "rate": true
+    },
+    {
+      "id": 3,
+      "title": "目標達成率",
+      "item":["実績","目標"],
+      "calc":"tasseiritsu",
+      "rate": true
+    },
+    {
+      "id": 4,
+      "title": "伸び率",
+      "item":["今月","前月"],
+      "calc":"nobiritsu",
+      "rate": true
+    },
+    {
+      "id": 5,
+      "title": "受講率",
+      "item":["実際の受講者数","申込者数"],
+      "calc":"jukouritsu",
+      "rate": true
+    },
+    {
+      "id": 6,
+      "title": "定価その1",
+      "item":["原価","粗利益"],
+      "calc":"teika01",
+      "rate": true
+    },
+    {
+      "id": 7,
+      "title": "定価その2",
+      "item":["原価","付加率"],
+      "calc":"teika02",
+      "rate": true
+    },
+    {
+      "id": 8,
+      "title": "原価その1",
+      "item":["定価","利益額"],
+      "calc":"genka01",
+      "rate": true
+    },
+    {
+      "id": 9,
+      "title": "原価その2",
+      "item":["定価","原価率"],
+      "calc":"genka02",
+      "rate": true
+    },
+    {
+      "id": 10,
+      "title": "利益率",
+      "item":["利益","定価"],
+      "calc":"riekiritsu",
+      "rate": true
+    },
+    {
+      "id": 11,
+      "title": "原価率",
+      "item":["売上原価","売上高"],
+      "calc":"genkaritsu",
+      "rate": true
+    },
+    {
+      "id": 12,
+      "title": "リピート率",
+      "item":["リピート数","購入者数"],
+      "calc":"repeat",
       "rate": true
     }
   ]

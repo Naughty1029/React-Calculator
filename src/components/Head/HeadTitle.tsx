@@ -2,8 +2,9 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CalculateIcon from '@mui/icons-material/Calculate';
+import { VFC } from 'react';
 
-export const HeadTitle = () => {
+export const HeadTitle: VFC = () => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <CalculateIcon sx={{ display: 'flex', mr: 1 }} />

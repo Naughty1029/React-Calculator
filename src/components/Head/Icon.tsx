@@ -1,11 +1,10 @@
 //ハンバーガーメニューのアイコンを出力するコンポーネント
-import { VFC } from 'react';
+import { memo, VFC } from 'react';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { HeadType } from '../../types/Head/HeadType';
 
-export const Icon: VFC<Pick<HeadType, 'handleOpenNavMenu'>> = (props) => {
-  const { handleOpenNavMenu } = props;
+export const Icon: VFC<Pick<HeadType, 'handleOpenNavMenu'>> = memo(({ handleOpenNavMenu }) => {
   return (
     <IconButton
       size="large"
@@ -18,4 +17,4 @@ export const Icon: VFC<Pick<HeadType, 'handleOpenNavMenu'>> = (props) => {
       <MenuIcon />
     </IconButton>
   );
-};
+});

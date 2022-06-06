@@ -2,6 +2,8 @@ import { useEffect, useState, VFC } from 'react';
 import Data from './formulas.json';
 import { Head } from './components/Head';
 import { useInputNumberArray, useResult } from './hooks';
+import { Form } from './components/Form';
+import { Container } from '@mui/material';
 
 type Formulas = {
   id: number;
@@ -14,7 +16,7 @@ type Formulas = {
 const App: VFC = () => {
   const formulas = Data;
   const [item, setItem] = useState<Formulas>(formulas[0]);
-  const { inputNumberArray, createInitialItemArray, handleInputNumber } = useInputNumberArray();
+  const { inputNumberArray, setInputNumberArray, createInitialItemArray } = useInputNumberArray();
   const { result, setResult, handleCalculate } = useResult();
 
   useEffect(() => {
@@ -32,28 +34,15 @@ const App: VFC = () => {
   return (
     <>
       <Head handleChangeItem={handleChangeItem} />
-      {/* {formulas.map((formula, index) => (
-        <button key={formula['id']} onClick={() => handleChangeItem(index)}>
-          {formula['title']}
-        </button>
-      ))} */}
-      <div>{item['title']}</div>
-      <div>
-        {item['item']?.map((item, index) => (
-          <div key={index}>
-            {item}
-            <input
-              type="text"
-              onChange={handleInputNumber}
-              data-index={index}
-              value={inputNumberArray[index] ? inputNumberArray[index]! : 0}
-            />
-            <br />
-          </div>
-        ))}
-        <button onClick={() => handleCalculate(item['calc'], inputNumberArray)}>計算</button>
-        <p>{result}</p>
-      </div>
+      <Container maxWidth="lg" sx={{ mt: 6 }}>
+        <Form
+          item={item}
+          inputNumberArray={inputNumberArray}
+          result={result}
+          setInputNumberArray={setInputNumberArray}
+          handleCalculate={handleCalculate}
+        />
+      </Container>
     </>
   );
 };
