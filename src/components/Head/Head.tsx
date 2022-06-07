@@ -5,15 +5,14 @@ import Container from '@mui/material/Container';
 import { HeadTitle } from './HeadTitle';
 import { HamburgerMenu } from './HamburgerMenu';
 import { memo, VFC } from 'react';
-import { HeadType } from '../../types/Head/HeadType';
 
-export const Head: VFC<Pick<HeadType, 'handleChangeItem'>> = memo(({ handleChangeItem }) => {
+export const Head: VFC = memo(() => {
   return (
     <AppBar position="static" sx={{ backgroundColor: '#99B3FF', color: '#FDFD5F' }}>
       <Container maxWidth="lg">
         <Toolbar disableGutters sx={{ justifyContent: { xs: 'space-between' } }}>
           <HeadTitle />
-          <HamburgerMenu handleChangeItem={handleChangeItem} />
+          <HamburgerMenu />
         </Toolbar>
       </Container>
     </AppBar>
