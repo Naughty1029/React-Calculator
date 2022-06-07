@@ -4,4 +4,5 @@ export type FormulaType = {
   item: Array<string>;
   calc: string;
   rate: boolean;
+  chart: string;
 };

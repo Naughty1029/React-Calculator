@@ -5,15 +5,15 @@ export const CalcFunctions = {
     return calc;
   },
   zennenhi: (...nums: number[]): number => {
-    const calc = nums[0] / nums[1];
+    const calc = nums[1] / nums[0];
     return calc;
   },
   tasseiritsu: (...nums: number[]): number => {
-    const calc = nums[0] / nums[1];
+    const calc = nums[1] / nums[0];
     return calc;
   },
   nobiritsu: (...nums: number[]): number => {
-    const calc = (nums[0] - nums[1]) / nums[1];
+    const calc = (nums[1] - nums[0]) / nums[0];
     return calc;
   },
   jukouritsu: (...nums: number[]): number => {
