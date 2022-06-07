@@ -1,31 +1,30 @@
-//ユーザーが入力した値を管理するためのカスタムフック
-import { useCallback, useEffect, useState } from 'react';
+//ユーザーの入力値をリセットするためのカスタムフック
+import { useCallback, useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { formulaState } from '../store/formulaState';
+import { inputNumberArrayState } from '../store/inputNumberArrayState';
+import { FormulaType } from '../types/Formula/FormulaType';
 
-type Formulas = {
-  id: number;
-  title: string;
-  item: Array<string>;
-  calc: string;
-  rate: boolean;
-};
-
-export const useInputNumberArray = (item: any) => {
-  const [inputNumberArray, setInputNumberArray] = useState<Array<number | null>>([]);
+export const useInputNumberArray = () => {
+  const formula = useRecoilValue(formulaState);
+  const setInputNumberArray = useSetRecoilState(inputNumberArrayState);
 
   useEffect(() => {
-    createInitialItemArray(item);
+    createInitialItemArray(formula);
     // eslint-disable-next-line
-  }, [item]);
+  }, [formula]);
 
   //フィールドの初期値を設定する関数
-  const createInitialItemArray = useCallback((item: Formulas) => {
-    const length = item['item'].length;
-    const resetArray = [];
-    for (let i = 0; i < length; i++) {
-      resetArray.push(null);
-    }
-    setInputNumberArray(resetArray); //InputTextArrayをリセット
-  }, []);
-
-  return { inputNumberArray, setInputNumberArray } as const;
+  const createInitialItemArray = useCallback(
+    (formula: FormulaType) => {
+      const length = formula['item'].length;
+      const resetArray = [];
+      for (let i = 0; i < length; i++) {
+        resetArray.push(null);
+      }
+      setInputNumberArray(resetArray); //InputTextArrayをリセット
+      // eslint-disable-next-line
+    },
+    [formula]
+  );
 };

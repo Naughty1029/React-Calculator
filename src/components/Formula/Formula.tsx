@@ -2,28 +2,18 @@ import { memo, VFC } from 'react';
 import { Typography } from '@mui/material';
 import { InputForm } from './InputForm';
 import { Result } from './Result';
-import { FormulaType } from '../../types/Formula/FormulaType';
+import { useRecoilValue } from 'recoil';
+import { formulaState } from '../../store/formulaState';
 
-type Props = {
-  item: FormulaType;
-  inputNumberArray: Array<number | null>;
-  setInputNumberArray: React.Dispatch<React.SetStateAction<Array<number | null>>>;
-};
-
-export const Formula: VFC<Props> = memo(({ item, inputNumberArray, setInputNumberArray }) => {
+export const Formula: VFC = memo(() => {
+  const formula = useRecoilValue(formulaState);
   return (
     <>
-      <Typography variant="h6">{item['title']}</Typography>
-      {item['item']?.map((item, index) => (
-        <InputForm
-          key={index}
-          item={item}
-          index={index}
-          inputNumberArray={inputNumberArray}
-          setInputNumberArray={setInputNumberArray}
-        />
+      <Typography variant="h6">{formula['title']}</Typography>
+      {formula['item']?.map((item, index) => (
+        <InputForm key={index} item={item} index={index} />
       ))}
-      <Result item={item} inputNumberArray={inputNumberArray} />
+      <Result />
     </>
   );
 });

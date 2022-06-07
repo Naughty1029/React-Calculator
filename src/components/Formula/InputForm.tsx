@@ -1,37 +1,37 @@
 //フォーム入力を表示するコンポーネント
 import { memo, VFC } from 'react';
 import styled from '@emotion/styled';
+import { useRecoilState } from 'recoil';
+import { inputNumberArrayState } from '../../store/inputNumberArrayState';
 
 type Props = {
   item: string;
   index: number;
-  inputNumberArray: Array<number | null>;
-  setInputNumberArray: React.Dispatch<React.SetStateAction<Array<number | null>>>;
 };
 
-export const InputForm: VFC<Props> = memo(
-  ({ item, index, inputNumberArray, setInputNumberArray }) => {
-    //入力値を受け取る関数
-    const handleInputNumber = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      let inputIndex = Number(e.currentTarget.getAttribute('data-index'));
-      const inputNumber = Number(e.target.value);
-      setInputNumberArray(
-        inputNumberArray.map((number, index) => (index === inputIndex ? inputNumber : number))
-      );
-    };
-    return (
-      <SContainer key={index}>
-        <p>{item}</p>
-        <SInput
-          type="text"
-          onChange={handleInputNumber}
-          data-index={index}
-          value={inputNumberArray[index] ? inputNumberArray[index]! : ''}
-        />
-      </SContainer>
+export const InputForm: VFC<Props> = memo(({ item, index }) => {
+  const [inputNumberArray, setInputNumberArray] = useRecoilState(inputNumberArrayState);
+
+  //入力値を受け取る関数
+  const handleInputNumber = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    let inputIndex = Number(e.currentTarget.getAttribute('data-index'));
+    const inputNumber = Number(e.target.value);
+    setInputNumberArray(
+      inputNumberArray.map((number, index) => (index === inputIndex ? inputNumber : number))
     );
-  }
-);
+  };
+  return (
+    <SContainer key={index}>
+      <p>{item}</p>
+      <SInput
+        type="text"
+        onChange={handleInputNumber}
+        data-index={index}
+        value={inputNumberArray[index] ? inputNumberArray[index]! : ''}
+      />
+    </SContainer>
+  );
+});
 
 const SContainer = styled.div`
   margin-top: 20px;

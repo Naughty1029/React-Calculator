@@ -38,10 +38,8 @@ export const Nav: VFC<Omit<HeadType, 'handleOpenNavMenu'>> = memo(
         onClose={handleCloseNavMenu}
       >
         {formulas.map((formula, index) => (
-          <MenuItem key={formula['id']} onClick={handleCloseNavMenu}>
-            <Typography textAlign="center" onClick={() => handleChangeItem(index)}>
-              {formula['title']}
-            </Typography>
+          <MenuItem key={formula['id']} onClick={() => handleChangeItem(index)}>
+            <Typography textAlign="center">{formula['title']}</Typography>
           </MenuItem>
         ))}
       </Menu>
