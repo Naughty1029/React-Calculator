@@ -18,10 +18,10 @@ export const Result: VFC = () => {
     const func = CalcFunctions[typeCalc];
     let result = func(...inputNumberArray);
     if (Number.isNaN(result)) return;
-    //小数点第2位以下を四捨五入
-    result = Math.round(result * 10) / 10;
     //計算結果が%表示は100を乗算する
     result = formula.rate ? result * 100 : result;
+    //小数点第2位以下を四捨五入
+    result = Math.round(result * 10) / 10;
     setResult(result);
   };
 
