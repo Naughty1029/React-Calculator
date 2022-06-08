@@ -16,8 +16,12 @@ export const Result: VFC = () => {
   const handleCalculate = (calc: string, inputNumberArray: any): void => {
     const typeCalc: keyof FunctionsType = calc as keyof FunctionsType;
     const func = CalcFunctions[typeCalc];
-    const result = func(...inputNumberArray);
+    let result = func(...inputNumberArray);
     if (Number.isNaN(result)) return;
+    //小数点第2位以下を四捨五入
+    result = Math.round(result * 10) / 10;
+    //計算結果が%表示は100を乗算する
+    result = formula.rate ? result * 100 : result;
     setResult(result);
   };
 
@@ -32,7 +36,10 @@ export const Result: VFC = () => {
       >
         計算する
       </Button>
-      <Typography variant="h6">計算結果：{result}</Typography>
+      <Typography variant="h6">
+        計算結果：{result}
+        {formula.rate && '%'}
+      </Typography>
     </>
   );
 };
