@@ -1,18 +1,21 @@
 import { memo, useEffect, VFC } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { chartDataState } from '../../store/chartDataState';
 import { BarChartLabelType } from '../../types/Chart/BarChartLabelType';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { FormulaType } from '../../types/Formula/FormulaType';
+import { inputNumberArrayState } from '../../store/inputNumberArrayState';
+import { useDownloadButton } from '../../hooks/useDownloadButton';
 
 type Props = {
   formula: FormulaType;
-  inputNumberArray: Array<number | null>;
   result: number;
 };
 
-export const ShowBarChart: VFC<Props> = memo(({ formula, inputNumberArray, result }) => {
+export const ShowBarChart: VFC<Props> = memo(({ formula, result }) => {
   const [chartData, setChartData] = useRecoilState(chartDataState);
+  const inputNumberArray = useRecoilValue(inputNumberArrayState);
+  const { renderButton, ref } = useDownloadButton();
 
   useEffect(() => {
     setChartData(
@@ -62,12 +65,15 @@ export const ShowBarChart: VFC<Props> = memo(({ formula, inputNumberArray, resul
   };
 
   return (
-    <ResponsiveContainer>
-      <BarChart data={chartData}>
-        <Bar dataKey="num" fill="#82ca9d" label={renderCustomBarLabel}></Bar>
-        <XAxis dataKey="key" />
-        <YAxis padding={{ top: 50 }} />
-      </BarChart>
-    </ResponsiveContainer>
+    <>
+      <ResponsiveContainer width="100%" height={420}>
+        <BarChart data={chartData} ref={ref}>
+          <Bar dataKey="num" fill="#82ca9d" label={renderCustomBarLabel} />
+          <XAxis dataKey="key" />
+          <YAxis padding={{ top: 50 }} />
+        </BarChart>
+      </ResponsiveContainer>
+      {renderButton()}
+    </>
   );
 });

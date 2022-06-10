@@ -37,7 +37,9 @@ export const InputForm: VFC<Props> = memo(({ item, index }) => {
         type="text"
         onChange={handleInputNumber}
         data-index={index}
-        value={inputNumberArray[index] ? inputNumberArray[index]! : ''}
+        value={
+          inputNumberArray[index] || inputNumberArray[index] === 0 ? inputNumberArray[index]! : ''
+        }
       />
       {checkInputIsNaN && <SErrorText>半角数値で入力してください</SErrorText>}
     </SContainer>

@@ -20,7 +20,7 @@ export const useInputNumberArray = () => {
       const length = formula['item'].length;
       const resetArray = [];
       for (let i = 0; i < length; i++) {
-        resetArray.push(null);
+        resetArray.push(0);
       }
       setInputNumberArray(resetArray); //InputTextArrayをリセット
     }, // eslint-disable-next-line

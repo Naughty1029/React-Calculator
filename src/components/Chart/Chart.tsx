@@ -2,24 +2,24 @@ import { VFC } from 'react';
 import { ShowBarChart } from './ShowBarChart';
 import { useRecoilValue } from 'recoil';
 import { formulaState } from '../../store/formulaState';
-import { inputNumberArrayState } from '../../store/inputNumberArrayState';
 import { resultState } from '../../store/resultState';
 import styled from '@emotion/styled';
 import { ShowPieChart } from './ShowPieChart';
+import { showChartState } from '../../store/showChartState';
 
 export const Chart: VFC = () => {
   const formula = useRecoilValue(formulaState);
-  const inputNumberArray = useRecoilValue(inputNumberArrayState);
+  const showChart = useRecoilValue(showChartState);
   const result = useRecoilValue(resultState);
 
   return (
     <>
-      {inputNumberArray.includes(null) ? (
+      {!showChart ? (
         <SDiv>数値を入力して下さい</SDiv>
       ) : formula['chart'] === 'bar' ? (
-        <ShowBarChart formula={formula} inputNumberArray={inputNumberArray} result={result} />
+        <ShowBarChart formula={formula} result={result} />
       ) : formula['chart'] === 'pie' ? (
-        <ShowPieChart formula={formula} inputNumberArray={inputNumberArray} result={result} />
+        <ShowPieChart formula={formula} result={result} />
       ) : (
         <SDiv>表示するグラフはありません</SDiv>
       )}
