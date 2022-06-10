@@ -10,11 +10,18 @@ export const Calculator: VFC = () => {
   return (
     <>
       <Head />
-      <Container maxWidth="lg" sx={{ mt: 6, display: 'flex' }}>
+      <Container maxWidth="lg" sx={{ mt: 6, mb: 6, display: { xs: 'block', md: 'flex' } }}>
         <Box>
           <Formula />
         </Box>
-        <Box sx={{ flexGrow: 1, ml: 6, width: 0 }}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            ml: { xs: 0, md: 6 },
+            mt: { xs: 4, md: 0 },
+            width: { xs: '100%', md: 0 },
+          }}
+        >
           <Chart />
         </Box>
       </Container>
