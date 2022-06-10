@@ -14,10 +14,12 @@ export const Chart: VFC = () => {
 
   return (
     <>
-      {formula['chart'] === 'bar' ? (
+      {inputNumberArray.includes(null) ? (
+        <SDiv>数値を入力して下さい</SDiv>
+      ) : formula['chart'] === 'bar' ? (
         <ShowBarChart formula={formula} inputNumberArray={inputNumberArray} result={result} />
       ) : formula['chart'] === 'pie' ? (
-        <ShowPieChart />
+        <ShowPieChart formula={formula} inputNumberArray={inputNumberArray} result={result} />
       ) : (
         <SDiv>表示するグラフはありません</SDiv>
       )}

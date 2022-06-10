@@ -23,8 +23,7 @@ export const useInputNumberArray = () => {
         resetArray.push(null);
       }
       setInputNumberArray(resetArray); //InputTextArrayをリセット
-      // eslint-disable-next-line
-    },
+    }, // eslint-disable-next-line
     [formula]
   );
 };

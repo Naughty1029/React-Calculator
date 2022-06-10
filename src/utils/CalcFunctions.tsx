@@ -1,7 +1,7 @@
 //計算式を定義するためのファイル
 export const CalcFunctions = {
   kouseihi: (...nums: number[]): number => {
-    const calc = nums[0] / nums[1];
+    const calc = nums[1] / nums[0];
     return calc;
   },
   zennenhi: (...nums: number[]): number => {
@@ -17,7 +17,7 @@ export const CalcFunctions = {
     return calc;
   },
   jukouritsu: (...nums: number[]): number => {
-    const calc = nums[0] / nums[1];
+    const calc = nums[1] / nums[0];
     return calc;
   },
   teika01: (...nums: number[]): number => {
@@ -37,15 +37,15 @@ export const CalcFunctions = {
     return calc;
   },
   riekiritsu: (...nums: number[]): number => {
-    const calc = nums[0] / nums[1];
+    const calc = nums[1] / nums[0];
     return calc;
   },
   genkaritsu: (...nums: number[]): number => {
-    const calc = nums[0] / nums[1];
+    const calc = nums[1] / nums[0];
     return calc;
   },
   repeat: (...nums: number[]): number => {
-    const calc = nums[0] / nums[1];
+    const calc = nums[1] / nums[0];
     return calc;
   },
 };

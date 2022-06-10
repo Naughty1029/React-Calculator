@@ -2,7 +2,7 @@
     {
       "id": 1,
       "title": "構成比",
-      "item":["一部","全体"],
+      "item":["全体","一部"],
       "calc":"kouseihi",
       "rate": true,
       "chart": "pie"
@@ -34,7 +34,7 @@
     {
       "id": 5,
       "title": "受講率",
-      "item":["受講者数","申込者数"],
+      "item":["申込者数","受講者数"],
       "calc":"jukouritsu",
       "rate": true,
       "chart": "pie"
@@ -74,7 +74,7 @@
     {
       "id": 10,
       "title": "利益率",
-      "item":["利益","定価"],
+      "item":["定価","利益"],
       "calc":"riekiritsu",
       "rate": true,
       "chart": "pie"
@@ -82,7 +82,7 @@
     {
       "id": 11,
       "title": "原価率",
-      "item":["売上原価","売上高"],
+      "item":["売上高","売上原価"],
       "calc":"genkaritsu",
       "rate": true,
       "chart": "pie"
@@ -90,7 +90,7 @@
     {
       "id": 12,
       "title": "リピート率",
-      "item":["リピート数","購入者数"],
+      "item":["購入者数","リピート数"],
       "calc":"repeat",
       "rate": true,
       "chart": "pie"

@@ -1,7 +1,7 @@
 import { memo, useEffect, VFC } from 'react';
 import { useRecoilState } from 'recoil';
 import { chartDataState } from '../../store/chartDataState';
-import { ChartLabelType } from '../../types/Chart/ChartLabelType';
+import { BarChartLabelType } from '../../types/Chart/BarChartLabelType';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { FormulaType } from '../../types/Formula/FormulaType';
 
@@ -25,7 +25,7 @@ export const ShowBarChart: VFC<Props> = memo(({ formula, inputNumberArray, resul
     // eslint-disable-next-line
   }, [result]);
 
-  const renderCustomBarLabel = ({ x, y, width, height, value, name }: ChartLabelType) => {
+  const renderCustomBarLabel = ({ x, y, width, height, value, name }: BarChartLabelType) => {
     if (!name) {
       return (
         <text
