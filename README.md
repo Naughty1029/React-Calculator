@@ -3,7 +3,7 @@
 ![image](https://raw.githubusercontent.com/Naughty1029/React-Calculator/main/mainvisual.jpg)
 
 ## Overview
-This is a web service that allows you to perform calculations that you often use in your work.
+This is a web service that allows you to perform calculations that you often use in your work.  
 Calculation results are displayed as charts and images can be downloaded.
 
 ![gif](https://raw.githubusercontent.com/Naughty1029/React-Calculator/main/explanation.gif)
@@ -23,7 +23,7 @@ The following calculations are supported.
 - Repeat Ratio
 
 ## Demo URL
-The service is available at the following URL.
+The service is available at the following URL.  
 https://react-calculator.cocoroworks.net/
 
 ## Development
@@ -37,7 +37,7 @@ https://react-calculator.cocoroworks.net/
 - mui/material: 5.8.2
 
 ## Author
-[twitter](https://twitter.com/masa_and_so_on) 
+[twitter](https://twitter.com/masa_and_so_on)  
 [Qiita](https://qiita.com/Naughty1029)
 
 ## Licence
