@@ -2,10 +2,10 @@ import { memo, useEffect, VFC } from 'react';
 import { FormulaType } from '../../types/Formula/FormulaType';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { chartDataState } from '../../store/chartDataState';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { PieChartLabelType } from '../../types/Chart/PieChartLabelType';
 import { inputNumberArrayState } from '../../store/inputNumberArrayState';
 import { useDownloadButton } from '../../hooks/useDownloadButton';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 type Props = {
   formula: FormulaType;

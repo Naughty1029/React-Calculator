@@ -2,10 +2,10 @@ import { memo, useEffect, VFC } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { chartDataState } from '../../store/chartDataState';
 import { BarChartLabelType } from '../../types/Chart/BarChartLabelType';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { FormulaType } from '../../types/Formula/FormulaType';
 import { inputNumberArrayState } from '../../store/inputNumberArrayState';
 import { useDownloadButton } from '../../hooks/useDownloadButton';
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 type Props = {
   formula: FormulaType;

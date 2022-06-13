@@ -1,10 +1,10 @@
 import { VFC } from 'react';
+import styled from '@emotion/styled';
 import { ShowBarChart } from './ShowBarChart';
+import { ShowPieChart } from './ShowPieChart';
 import { useRecoilValue } from 'recoil';
 import { formulaState } from '../../store/formulaState';
 import { resultState } from '../../store/resultState';
-import styled from '@emotion/styled';
-import { ShowPieChart } from './ShowPieChart';
 import { showChartState } from '../../store/showChartState';
 
 export const Chart: VFC = () => {

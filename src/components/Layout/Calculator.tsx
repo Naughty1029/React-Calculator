@@ -1,9 +1,9 @@
 import { VFC } from 'react';
-import { Head } from '../components/Head';
-import { Formula } from '../components/Formula';
-import { Chart } from '../components/Chart/Chart';
-import { useInputNumberArray } from '../hooks';
 import { Container, Box } from '@mui/material';
+import { Head } from '../Head';
+import { Formula } from '../Formula';
+import { Chart } from '../Chart/Chart';
+import { useInputNumberArray } from '../../hooks';
 
 export const Calculator: VFC = () => {
   useInputNumberArray();

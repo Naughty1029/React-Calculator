@@ -4,11 +4,11 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { HeadType } from '../../types/Head/HeadType';
-import Data from '../../formulas.json';
 import { useSetRecoilState } from 'recoil';
 import { resultState } from '../../store/resultState';
 import { formulaState } from '../../store/formulaState';
 import { showChartState } from '../../store/showChartState';
+import Data from '../../formulas.json';
 
 export const Nav: VFC<Omit<HeadType, 'handleOpenNavMenu'>> = memo(
   ({ anchorElNav, handleCloseNavMenu }) => {

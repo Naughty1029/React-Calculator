@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 import { RecoilRoot } from 'recoil';
-import { Calculator } from './layout/Calculator';
+import { Calculator } from './components/Layout/Calculator';
 
 const App: VFC = () => {
   return (

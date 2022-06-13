@@ -1,8 +1,8 @@
 //Headerのタイトル部分を出力するコンポーネント
+import { VFC } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CalculateIcon from '@mui/icons-material/Calculate';
-import { VFC } from 'react';
 
 export const HeadTitle: VFC = () => {
   return (

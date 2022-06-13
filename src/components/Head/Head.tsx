@@ -1,10 +1,10 @@
 //ヘッダー全体を包括するコンポーネント
+import { memo, VFC } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { HeadTitle } from './HeadTitle';
 import { HamburgerMenu } from './HamburgerMenu';
-import { memo, VFC } from 'react';
 
 export const Head: VFC = memo(() => {
   return (
