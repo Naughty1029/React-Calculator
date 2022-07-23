@@ -18,7 +18,7 @@ export const Result: VFC = () => {
   const handleCalculate = (calc: string, inputNumberArray: Array<number>): void => {
     const typeCalc: keyof FunctionsType = calc as keyof FunctionsType;
     const func = CalcFunctions[typeCalc];
-    let result = func(...inputNumberArray);
+    let result = func(inputNumberArray);
 
     //計算可能な値かバリデーション
     if (Number.isNaN(result) || !isFinite(result)) {
